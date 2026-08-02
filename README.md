@@ -6,7 +6,7 @@ A comprehensive quantitative finance project that applies **Modern Portfolio The
 
 ## Live Dashboard
 
-> **Streamlit App:** *(Add your deployed Streamlit URL here)*
+> **Streamlit App:** *https://portfolio-analysis-optimization-app.streamlit.app/*
 
 ---
 
