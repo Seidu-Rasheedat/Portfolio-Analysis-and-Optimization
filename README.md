@@ -190,6 +190,18 @@ University of Lagos
 
 ---
 
+# Disclaimer
+
+This project was developed solely for **educational, research, and portfolio demonstration purposes** as part of the author's Quant Foundations learning journey.
+
+All portfolio analyses, optimisation results, visualisations, and performance metrics are based on historical market data and should **not** be interpreted as financial, investment, or trading advice. Past performance does not guarantee future results, and actual market conditions may differ significantly from those presented in this project.
+
+The optimisation process employs **Modern Portfolio Theory (MPT)** and Monte Carlo simulation under a set of simplifying assumptions. Real-world portfolio management involves additional considerations such as transaction costs, taxes, liquidity constraints, market impact, and changing economic conditions, which are beyond the scope of this analysis.
+
+Users should conduct their own independent research and, where appropriate, seek advice from qualified financial professionals before making investment decisions.
+
+---
+
 # References
 - Sharpe, W. F. (1966). *Mutual fund performance*
 - Markowitz, H. (1952). *Portfolio Selection.*
