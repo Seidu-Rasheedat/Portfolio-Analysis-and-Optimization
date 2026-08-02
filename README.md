@@ -20,7 +20,7 @@ The complete technical report can be downloaded directly from the Streamlit dash
 
 This project analyses a diversified portfolio of U.S. equities using historical market data and evaluates its performance through return and risk metrics. Monte Carlo simulation is then used to generate thousands of random portfolios to identify allocations that maximise risk-adjusted performance while illustrating the Efficient Frontier.
 
-The project demonstrates the complete quantitative investment workflow—from raw financial data to portfolio optimisation and interactive visualisation.
+The project demonstrates the complete quantitative investment workflow from raw financial data to portfolio optimisation and interactive visualisation.
 
 ---
 
@@ -116,6 +116,26 @@ Portfolio-Analysis-and-Optimization/
 - Identified the **Minimum Volatility Portfolio**
 - Demonstrated the improvement achievable through strategic asset allocation
 - Developed a fully interactive portfolio analytics dashboard
+
+---
+
+# Portfolio Performance Comparison
+
+The portfolio optimisation process was evaluated by comparing the original equally weighted portfolio against the optimal portfolio identified through **10,000 Monte Carlo simulations**. While the equally weighted portfolio allocates identical weights to every asset, the optimised portfolio strategically reallocates capital to maximise the portfolio's **Sharpe Ratio**, producing superior risk-adjusted performance.
+
+| Metric | Equal-Weighted Portfolio | Optimised Portfolio |
+|--------|-------------------------:|--------------------:|
+| Expected Annual Return | **23.78%** | **29.53%** |
+| Annual Volatility | **21.40%** | **22.60%** |
+| Sharpe Ratio | **0.92** | **1.13** |
+
+### Interpretation
+
+The optimisation process increased the portfolio's expected annual return from **23.78%** to **29.53%**, representing a substantial improvement in potential performance. Although annual volatility increased slightly from **21.40%** to **22.60%**, the increase in expected return more than compensated for the additional risk.
+
+Most importantly, the portfolio's **Sharpe Ratio improved from 0.92 to 1.13**, indicating that the optimised portfolio generates significantly more return for each unit of risk assumed. This demonstrates the effectiveness of Modern Portfolio Theory in constructing portfolios that maximise risk-adjusted performance rather than simply pursuing the highest returns.
+
+Overall, the results illustrate how quantitative portfolio optimisation can produce a more efficient allocation of capital than a naïve equal-weighted strategy while maintaining a well-diversified investment portfolio.
 
 ---
 
