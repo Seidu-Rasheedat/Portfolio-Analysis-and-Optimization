@@ -23,6 +23,15 @@ env/
 # Windows
 Thumbs.db
 
+# Linux
+*~
+.directory
+.Trash-*
+
+# Vim
+*.swp
+*.swo
+
 # Python cache
 .pytest_cache/
 .mypy_cache/
