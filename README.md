@@ -44,11 +44,13 @@ The project demonstrates the complete quantitative investment workflow from raw 
 
 # Dashboard Pages
 
-- Home
-- Data Overview
-- Portfolio Performance
+- Executive Summary
+- Performance Analytics
 - Risk Analytics
-- Portfolio Optimisation
+- Portfolio Optimization
+- Portfolio Allocation
+- Research Report
+- About Project
 
 ---
 
