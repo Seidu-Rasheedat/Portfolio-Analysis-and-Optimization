@@ -90,7 +90,7 @@ The project evaluates portfolio performance using:
 - Plotly
 - yfinance
 - Matplotlib
-- SciPy
+- Seaborn
 
 ---
 
