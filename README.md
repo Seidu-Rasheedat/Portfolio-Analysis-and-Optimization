@@ -38,7 +38,7 @@ The project demonstrates the complete quantitative investment workflow from raw 
 - Portfolio allocation visualisation
 - Performance comparison tables
 - Interactive Streamlit dashboard
-- Professional quantitative finance report
+- Professional Portfolio Analysis report
 
 ---
 
@@ -131,14 +131,12 @@ The portfolio optimisation process was evaluated by comparing the original equal
 | Annual Volatility | **21.40%** | **22.60%** |
 | Sharpe Ratio | **0.92** | **1.13** |
 
-### Interpretation
+## Interpretation
+The optimisation process increased the portfolio's expected annual return from 23.78% to 29.53%, representing a substantial improvement in potential performance. Although annual volatility increased slightly from 21.40% to 22.60%, the increase in expected return more than compensated for the additional risk.
 
-The optimisation process increased the portfolio's expected annual return from **23.78%** to **29.53%**, representing a substantial improvement in potential performance. Although annual volatility increased slightly from **21.40%** to **22.60%**, the increase in expected return more than compensated for the additional risk.
-
-Most importantly, the portfolio's **Sharpe Ratio improved from 0.92 to 1.13**, indicating that the optimised portfolio generates significantly more return for each unit of risk assumed. This demonstrates the effectiveness of Modern Portfolio Theory in constructing portfolios that maximise risk-adjusted performance rather than simply pursuing the highest returns.
+Most importantly, the portfolio's Sharpe Ratio improved from 0.92 to 1.13, indicating that the optimised portfolio generates significantly more return for each unit of risk assumed. This demonstrates the effectiveness of Modern Portfolio Theory in constructing portfolios that maximise risk-adjusted performance rather than simply pursuing the highest returns.
 
 Overall, the results illustrate how quantitative portfolio optimisation can produce a more efficient allocation of capital than a naïve equal-weighted strategy while maintaining a well-diversified investment portfolio.
-
 ---
 
 # Installation
@@ -192,6 +190,15 @@ University of Lagos
 
 ---
 
+# References
+- Sharpe, W. F. (1966). *Mutual fund performance*
+- Markowitz, H. (1952). *Portfolio Selection.*
+- Streamlit Documentation
+- Pandas Documentation
+- NumPy Documentation
+
+---
+
 # Disclaimer
 
 This project was developed solely for **educational, research, and portfolio demonstration purposes** as part of the author's Quant Foundations learning journey.
@@ -201,15 +208,6 @@ All portfolio analyses, optimisation results, visualisations, and performance me
 The optimisation process employs **Modern Portfolio Theory (MPT)** and Monte Carlo simulation under a set of simplifying assumptions. Real-world portfolio management involves additional considerations such as transaction costs, taxes, liquidity constraints, market impact, and changing economic conditions, which are beyond the scope of this analysis.
 
 Users should conduct their own independent research and, where appropriate, seek advice from qualified financial professionals before making investment decisions.
-
----
-
-# References
-- Sharpe, W. F. (1966). *Mutual fund performance*
-- Markowitz, H. (1952). *Portfolio Selection.*
-- Streamlit Documentation
-- Pandas Documentation
-- NumPy Documentation
 
 ---
 
