@@ -138,6 +138,7 @@ Most importantly, the portfolio's Sharpe Ratio improved from 0.92 to 1.13, indic
 
 Overall, the results illustrate how quantitative portfolio optimisation can produce a more efficient allocation of capital than a naïve equal-weighted strategy while maintaining a well-diversified investment portfolio.
 
+
 ---
 
 # Installation
