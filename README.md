@@ -137,6 +137,7 @@ The optimisation process increased the portfolio's expected annual return from 2
 Most importantly, the portfolio's Sharpe Ratio improved from 0.92 to 1.13, indicating that the optimised portfolio generates significantly more return for each unit of risk assumed. This demonstrates the effectiveness of Modern Portfolio Theory in constructing portfolios that maximise risk-adjusted performance rather than simply pursuing the highest returns.
 
 Overall, the results illustrate how quantitative portfolio optimisation can produce a more efficient allocation of capital than a naïve equal-weighted strategy while maintaining a well-diversified investment portfolio.
+
 ---
 
 # Installation
