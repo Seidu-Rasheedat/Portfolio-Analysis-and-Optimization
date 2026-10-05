@@ -188,40 +188,7 @@ if page == "Overview":
             "Maximum Drawdown",
             f"{max_drawdown:.2%}"
         )
-
-    st.divider()
-
-    # Portfolio Growth
-
-    st.subheader("Portfolio Growth")
-
-    fig = px.line(
-        x=portfolio_cumulative.index,
-        y=portfolio_cumulative.values,
-        labels={
-            "x": "Date",
-            "y": "Growth of $1"
-        }
-    )
-
-    fig.update_layout(
-        title="Growth of $1 Invested",
-        hovermode="x unified",
-        xaxis=dict(
-            dtick="M12",
-            tickformat="%Y"
-        ),
-        yaxis=dict(
-            showgrid=False
-        ),
-        height=420
-    )
-
-    st.plotly_chart(
-        fig,
-        use_container_width=True
-    )
-
+  
     st.divider()
 
     # Analytical Framework

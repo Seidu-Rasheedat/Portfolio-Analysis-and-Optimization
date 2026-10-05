@@ -106,7 +106,8 @@ Portfolio-Analysis-and-Optimization/
 ├── requirements.txt
 ├── README.md
 ├── LICENSE
-└── .gitignore
+├── .gitignore
+└── .streamlit (config.toml)
 ```
 
 ---
