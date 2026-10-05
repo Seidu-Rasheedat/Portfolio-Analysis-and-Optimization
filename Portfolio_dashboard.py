@@ -7,16 +7,17 @@ import pickle
 
 # Page Configuration
 
-
 st.set_page_config(
-    page_title="Portfolio Analytics Dashboard",
+    page_title="Portfolio Analysis & Optimization",
     layout="wide",
     initial_sidebar_state="expanded"
 )
 
 
-# Load Saved Portfolio Data
 
+
+
+# Load Saved Portfolio Data
 
 with open("portfolio_data.pkl", "rb") as Portfolio_data:
     data = pickle.load(Portfolio_data)
@@ -26,8 +27,6 @@ portfolio_cumulative = data["portfolio_cumulative"]
 
 rolling_volatility = data["rolling_volatility"]
 drawdown = data["drawdown"]
-
-
 
 best_weights = data["best_weights"]
 simulation_results = data["simulation_results"]
@@ -74,164 +73,222 @@ opt_sharpe = optimized_portfolio.loc[
 
 # Sidebar
 
-st.sidebar.title("Portfolio Analytics Dashboard")
+st.sidebar.markdown(
+    """
+    ## PORTFOLIO ANALYSIS & OPTIMIZATION
 
-st.sidebar.write(
-"""
-This dashboard presents an end-to-end quantitative portfolio analysis of
-30 large-cap U.S. equities between **2020 and 2025**.
-
-The project evaluates portfolio performance,
-risk characteristics,
-diversification,
-and portfolio optimisation using Modern Portfolio Theory.
-"""
+    Historical quantitative portfolio analysis
+    """
 )
 
 st.sidebar.divider()
 
 page = st.sidebar.radio(
-
     "Navigation",
-
     [
-
-        "Executive Summary",
-
+        "Overview",
         "Performance Analytics",
-
         "Risk Analytics",
-
         "Portfolio Optimization",
-
-        "Portfolio Allocation",
-
+        "Investment Portfolio",
         "Research Report",
-
-        "About Project"
+        "About the Project"
     ],
     label_visibility="collapsed"
-
 )
 
 st.sidebar.divider()
 
-st.sidebar.caption("Developed using Python, Plotly and Streamlit")
+st.sidebar.caption("30 U.S. Equities  •  2020–2024")
+st.sidebar.caption("Modern Portfolio Theory  •  Monte Carlo")
+st.sidebar.caption("Python  •  Plotly  •  Streamlit")
 
 
-# Executive Summary
 
-if page == "Executive Summary":
 
-    st.title("Portfolio Analytics Dashboard")
+
+# Overview
+
+if page == "Overview":
+
+    st.title("Portfolio Analysis & Optimization")
 
     st.caption(
-        "An end-to-end quantitative portfolio analysis of an equally weighted portfolio "
-        "comprising 30 U.S. large-cap equities over the period 2020–2025."
-    )
+    "This dashboard examines the historical performance, risk, and "
+    "portfolio characteristics of 30 U.S. equities from 2020 to 2024. "
+    "It combines portfolio analytics with Modern Portfolio Theory to "
+    "evaluate how diversification and portfolio allocation influence "
+    "the return-risk trade-off."
+)
 
     st.divider()
+
+    # Portfolio Snapshot
+
+    st.subheader("Portfolio Snapshot")
 
     col1, col2, col3, col4 = st.columns(4)
 
     with col1:
-        st.markdown("---")
-
         st.metric(
-            label="↗ Expected Annual Return",
-            value=f"{expected_return:.2%}"
-)
-
-        st.markdown("---")
+            "Assets",
+            "30",
+            "U.S. equities"
+        )
 
     with col2:
-        st.markdown("---")
-
         st.metric(
-            label="⚠ Annual Volatility",
-            value=f"{portfolio_volatility:.2%}"
+            "Sectors",
+            "7",
+            "Diversified exposure"
         )
-
-        st.markdown("---")
 
     with col3:
-        st.markdown("---")
-
         st.metric(
-            label="★ Sharpe Ratio",
-            value=f"{sharpe_ratio:.2f}"
+            "Trading Days",
+            "1,258",
+            "Historical observations"
         )
-
-        st.markdown("---")
 
     with col4:
-        st.markdown("---")
-
         st.metric(
-            label="↓ Maximum Drawdown",
-            value=f"{max_drawdown:.2%}"
+            "Study Period",
+            "2020–2024",
+            "5-year analysis"
         )
 
-        st.markdown("---")
+    st.divider()
+
+    # Portfolio Performance
+
+    st.subheader("Portfolio Performance")
+
+    col1, col2, col3, col4 = st.columns(4)
+
+    with col1:
+        st.metric(
+            "Annual Return",
+            f"{expected_return:.2%}"
+        )
+
+    with col2:
+        st.metric(
+            "Annual Volatility",
+            f"{portfolio_volatility:.2%}"
+        )
+
+    with col3:
+        st.metric(
+            "Sharpe Ratio",
+            f"{sharpe_ratio:.2f}"
+        )
+
+    with col4:
+        st.metric(
+            "Maximum Drawdown",
+            f"{max_drawdown:.2%}"
+        )
 
     st.divider()
 
-    st.subheader("Executive Summary")
+    # Portfolio Growth
+
+    st.subheader("Portfolio Growth")
+
+    fig = px.line(
+        x=portfolio_cumulative.index,
+        y=portfolio_cumulative.values,
+        labels={
+            "x": "Date",
+            "y": "Growth of $1"
+        }
+    )
+
+    fig.update_layout(
+        title="Growth of $1 Invested",
+        hovermode="x unified",
+        xaxis=dict(
+            dtick="M12",
+            tickformat="%Y"
+        ),
+        yaxis=dict(
+            showgrid=False
+        ),
+        height=420
+    )
+
+    st.plotly_chart(
+        fig,
+        use_container_width=True
+    )
+
+    st.divider()
+
+    # Analytical Framework
+
+    st.header("Analytical Framework")
+
+    col1, col2 = st.columns(2)
+
+    with col1:
+
+        st.markdown("### Portfolio Construction")
+
+        st.write(
+            """
+            The portfolio begins with an equal-weight allocation across
+            30 U.S. equities. Each constituent receives approximately
+            3.33% of the portfolio.
+            """
+        )
+
+    with col2:
+
+        st.markdown("### Quantitative Analysis")
+
+        st.write(
+            """
+            The analysis evaluates historical performance, volatility,
+            drawdown and risk-adjusted returns before applying Monte Carlo
+            simulation to identify more efficient portfolio allocations.
+            """
+        )
+
+    st.divider()
+
+    # Key Takeaway
+
+    st.subheader("Key Takeaway")
 
     st.write(
+        f"""
+        The equal-weighted portfolio generated an annualised return of
+        **{expected_return:.2%}** with **{portfolio_volatility:.2%}**
+        annualised volatility and a **{sharpe_ratio:.2f} Sharpe Ratio**.
+        The historical maximum drawdown was **{max_drawdown:.2%}**.
+
+        The optimisation analysis extends this baseline by examining
+        thousands of alternative allocations and evaluating how portfolio
+        weighting affects the return-risk trade-off.
         """
-This dashboard presents the findings of a comprehensive portfolio analytics project
-conducted on an equally weighted portfolio of thirty U.S. equities.
-
-The analysis follows a complete quantitative investment workflow, beginning with
-historical price collection before progressing through return estimation,
-risk measurement, portfolio construction, optimisation using Monte Carlo
-simulation, and performance evaluation.
-
-Rather than serving as an investment recommendation, the project demonstrates how
-financial data can be transformed into meaningful portfolio insights through
-Python and Modern Portfolio Theory.
-"""
     )
 
-    st.divider()
 
-    st.subheader("Key Findings")
 
-    findings = [
-        f"Historical annual return was estimated at **{expected_return:.2%}**.",
-        f"The portfolio exhibited an annualised volatility of **{portfolio_volatility:.2%}**.",
-        f"A Sharpe Ratio of **{sharpe_ratio:.2f}** suggests moderate risk-adjusted performance.",
-        f"The maximum historical drawdown reached **{max_drawdown:.2%}**, largely driven by the COVID-19 market crash.",
-        "Monte Carlo optimisation identified portfolios capable of improving the return-risk trade-off.",
-        "Interactive visualisations throughout this dashboard allow further exploration of portfolio behaviour."
-    ]
-
-    for item in findings:
-        st.success(item)
-
-    st.divider()
-
-    st.info(
-        "Use the navigation panel on the left to explore portfolio performance, "
-        "risk analysis, optimisation results, allocation decisions, and the "
-        "underlying research methodology."
-    )
 
 
 # Performance Analytics
-
 
 if page == "Performance Analytics":
 
     st.title("Performance Analytics")
 
-    st.write(
-        """
-Explore how the portfolio evolved throughout the five-year investment period.
-The visualisations below provide insight into cumulative portfolio growth and
-daily portfolio return behaviour.
-"""
+    st.caption(
+        "This section evaluates how the portfolio performed over the study "
+        "period, focusing on cumulative growth, annualised returns, and the "
+        "contribution of individual equities to overall portfolio performance. "
+        "The analysis provides a historical baseline for understanding the "
+        "portfolio before assessing its risk and optimisation characteristics."
     )
 
     st.divider()
@@ -376,19 +433,16 @@ volatility, drawdown, and the Sharpe Ratio.
 
 # Risk Analytics
 
-
 if page == "Risk Analytics":
 
     st.title("Risk Analytics")
 
-    st.write(
-        """
-Understanding portfolio risk is just as important as measuring returns.
-        The analyses below examine how portfolio risk evolved over time and
-        quantify the magnitude of losses experienced during adverse market
-        conditions.
-        """
-    )
+    st.caption(
+    "This section examines the risk characteristics of the portfolio using "
+    "volatility, drawdowns, and rolling risk measures. The objective is to "
+    "understand not only how much the portfolio returned, but also the "
+    "magnitude and behaviour of the risks taken to achieve those returns."
+)
 
     st.divider()
 
@@ -565,26 +619,26 @@ Understanding portfolio risk is just as important as measuring returns.
 
         st.write(
         f"""
-Drawdown measures the percentage decline from the portfolio's previous peak
-value and represents one of the most widely used measures of downside risk
-within portfolio management.
+            Drawdown measures the percentage decline from the portfolio's previous peak
+            value and represents one of the most widely used measures of downside risk
+            within portfolio management.
 
-The portfolio experienced a maximum drawdown of **{max_drawdown:.2%}**,
-indicating that at its worst point the portfolio lost approximately one-third
-of its value relative to its previous peak before subsequently recovering.
+            The portfolio experienced a maximum drawdown of **{max_drawdown:.2%}**,
+            indicating that at its worst point the portfolio lost approximately one-third
+            of its value relative to its previous peak before subsequently recovering.
 
-The deepest decline occurred during the COVID-19 market crisis, a period
-characterised by unprecedented uncertainty, widespread market sell-offs,
-and heightened investor risk aversion.
+            The deepest decline occurred during the COVID-19 market crisis, a period
+            characterised by unprecedented uncertainty, widespread market sell-offs,
+            and heightened investor risk aversion.
 
-Despite this substantial temporary decline, the portfolio gradually recovered
-as financial markets stabilised, demonstrating the resilience of a diversified
-portfolio over longer investment horizons.
+            Despite this substantial temporary decline, the portfolio gradually recovered
+            as financial markets stabilised, demonstrating the resilience of a diversified
+            portfolio over longer investment horizons.
 
-Unlike volatility, which measures fluctuations in returns, drawdown captures
-the actual magnitude of losses experienced by an investor, making it an
-important complement to traditional risk measures.
-"""
+            Unlike volatility, which measures fluctuations in returns, drawdown captures
+            the actual magnitude of losses experienced by an investor, making it an
+            important complement to traditional risk measures.
+            """
         )
 
         st.warning(
@@ -595,22 +649,23 @@ important complement to traditional risk measures.
         )
 
 
-# Portfolio Optimization
 
+
+
+# Portfolio Optimization
 
 if page == "Portfolio Optimization":
 
     st.title("Portfolio Optimization")
 
-    st.write(
-        """
-        Monte Carlo simulation was used to generate 10,000 random portfolio allocations.
-        Each simulated portfolio was evaluated based on its expected annual return,
-        annual volatility and Sharpe Ratio, allowing the identification of optimal
-        portfolios under different investment objectives.
-        """
+    st.caption(
+    "This section applies Modern Portfolio Theory through Monte Carlo "
+    "simulation to evaluate 10,000 alternative portfolio allocations. "
+    "The analysis explores the relationship between expected return and "
+    "risk and identifies allocations that offer stronger risk-adjusted "
+    "performance within the simulated portfolio set."
     )
-
+    
     st.divider()
 
 
@@ -965,318 +1020,172 @@ if page == "Portfolio Optimization":
     )
 
 
-# Portfolio Allocation
 
 
-if page == "Portfolio Allocation":
 
-    st.title("Portfolio Allocation")
+# Investment Portfolio
 
-    st.write(
-        """
-Portfolio allocation represents the proportion of total capital invested
-across individual securities.
+if page == "Investment Portfolio":
 
-The visualisations below present the optimal portfolio allocation obtained
-from the Monte Carlo optimisation process, highlighting the largest holdings
-and illustrating how capital is distributed across the portfolio.
-"""
+    st.title("Investment Portfolio")
+
+    st.caption(
+    "This section translates the portfolio's historical performance into "
+    "an investment perspective. It shows how an initial investment would "
+    "have changed over the study period and allows different starting "
+    "amounts to be tested against the same historical portfolio returns."
     )
 
     st.divider()
 
-    allocation_view = st.radio(
+    # Featured Investment Scenario
 
-    "Select Allocation View",
+    st.subheader("Historical Investment Scenario")
 
-    [
-
-        "Sunburst Chart",
-
-        "Treemap",
-
-        "Top 10 Holdings"
-
-    ],
-
-    horizontal=True
-
+    st.caption(
+    "Illustrative historical outcome: how a $100,000 investment would "
+    "have grown if invested at the beginning of the study period."
 )
 
+    featured_investment = 100000
 
-# Sunburst Chart
+    featured_values = featured_investment * portfolio_cumulative
+    featured_ending_value = featured_values.iloc[-1]
+    featured_gain = featured_ending_value - featured_investment
+    featured_return = (featured_ending_value / featured_investment) - 1
 
+    col1, col2, col3 = st.columns(3)
 
-    if allocation_view == "Sunburst Chart":
-
-        sunburst_df = (
-
-        best_weights
-        .sort_values(ascending=False)
-        .reset_index()
-
-    )
-
-        sunburst_df.columns = [
-
-        "Ticker",
-
-        "Weight"
-
-    ]
-
-        sunburst_df["Portfolio"] = "Optimal Portfolio"
-
-        fig = px.sunburst(
-
-        sunburst_df,
-
-        path=["Portfolio", "Ticker"],
-
-        values=best_weights.values,
-
-        color=best_weights.values,
-
-        color_continuous_scale="Blues"
-
-    )
-        fig.update_traces(
-        hovertemplate=
-        "<b>Ticker:</b> %{label}<br>"
-        "<b>Portfolio Weight:</b> %{value:.2f}%"
-        "<extra></extra>"
-    )
-
-        fig.update_layout(
-
-        template="plotly_white",
-
-        title="Optimal Portfolio Allocation"
-    )
-
-        fig.update_coloraxes(
-        
-            colorbar=dict(
-        
-                title="Weight(%)",
-        
-                y=0.35,
-        
-                len=0.95
-        
-            )
-        
+    with col1:
+        st.metric(
+            "Initial Investment",
+            f"${featured_investment:,.0f}"
         )
-        
 
-        st.plotly_chart(
+    with col2:
+        st.metric(
+            "Ending Value",
+            f"${featured_ending_value:,.0f}"
+        )
 
+    with col3:
+        st.metric(
+            "Total Return",
+            f"{featured_return:.2%}"
+        )
+
+    st.caption(
+        f"Historical outcome over the study period, "
+        f"1 January 2020 to 1 January 2025."
+    )
+
+    fig = px.line(
+        x=featured_values.index,
+        y=featured_values.values,
+        labels={
+            "x": "Date",
+            "y": "Portfolio Value ($)"
+        }
+    )
+
+    fig.update_layout(
+        title="Historical Growth of $100,000",
+        hovermode="x unified",
+        xaxis=dict(
+            dtick="M12",
+            tickformat="%Y"
+        ),
+        yaxis=dict(
+            tickprefix="$",
+            tickformat=",.0f",
+            showgrid=False
+        ),
+        height=420
+    )
+
+    st.plotly_chart(
         fig,
-
-        width="stretch"
-
+        use_container_width=True
     )
 
-
-    
-    # Treemap
-   
-    elif allocation_view == "Treemap":
-
-        fig = px.treemap(
-
-            names=best_weights.index,
-
-            parents=[""] * len(best_weights),
-
-            values=best_weights.values,
-
-            color=best_weights.values,
-
-            color_continuous_scale="Blues"
-
-        )
-
-        fig.update_traces(
-        hovertemplate=
-        "<b>Ticker:</b> %{label}<br>"
-        "<b>Portfolio Weight:</b> %{value:.2f}%"
-        "<extra></extra>"
-
-        )
-
-        fig.update_layout(
-
-            template="plotly_white"
-
-        )
-
-        fig.update_coloraxes(
-        
-            colorbar=dict(
-        
-                title="Weight(%)",
-        
-                y=0.35,
-        
-                len=0.95
-        
-            )
-        
-        )
-        
-
-        st.plotly_chart(
-
-            fig,
-
-            width="stretch"
-
-        )
-
-   
-    # Bar Chart
-   
-    else:
-
-        top10 = (
-
-            best_weights
-
-            .sort_values(ascending=False)
-
-            .head(10)
-
-            .reset_index()
-
-        )
-
-        top10.columns = [
-
-            "Ticker",
-
-            "Weight"
-
-        ]
-
-        fig = px.bar(
-
-            top10,
-
-            x="Weight",
-
-            y="Ticker",
-
-            orientation="h",
-
-            text="Weight",
-
-            color="Weight",
-
-            color_continuous_scale="Blues"
-
-        )
-
-        fig.update_traces(
-        texttemplate="%{text:.2f}%",
-        hovertemplate=
-        "<b>Ticker:</b> %{y}<br>"
-        "<b>Portfolio Weight:</b> %{x:.2f}%"
-        "<extra></extra>"
-        )
-
-        fig.update_layout(
-
-            template="plotly_white",
-
-            title="Top 10 Portfolio Holdings"
-
-        )
-
-        fig.update_coloraxes(
-        
-            colorbar=dict(
-        
-                title="Weight(%)",
-        
-                y=0.35,
-        
-                len=0.95
-        
-            )
-        
-        )
-        
-
-        st.plotly_chart(
-
-            fig,
-
-            width="stretch"
-
-        )
-
     st.divider()
 
-    # Portfolio Holdings
-    
-    st.subheader("Portfolio Holdings")
+    # Investment Simulator
 
-    holdings = (
-    best_weights
-    .sort_values(ascending=False)
-    .rename("Portfolio Weight")
-    .reset_index()
-)
-
-    holdings.columns = [
-    "Ticker",
-    "Portfolio Weight"
-]
-
-    st.dataframe(
-    holdings.style.format({
-        "Portfolio Weight": "{:.2f}%"
-    }),
-    width="stretch",
-    hide_index=True
-)
-    
-
-    st.divider()
-
-    st.subheader("Interpretation")
+    st.header("Investment Simulator")
 
     st.write(
-        """
-    The optimised portfolio demonstrates a diversified allocation across
-    multiple sectors and industries rather than concentrating capital in a
-    small number of securities.
+        "Enter an initial investment to see how the portfolio would "
+        "have performed historically."
+    )
 
-    Although several companies receive relatively larger allocations,
-    no single stock dominates the portfolio, helping to reduce
-    concentration risk while allowing the optimisation process to allocate
-    more capital to securities that improve the portfolio's overall
-    risk-return profile.
+    investment = st.number_input(
+        "Initial Investment ($)",
+        min_value=100.0,
+        value=10000.0,
+        step=1000.0
+    )
 
-    Interactive allocation visualisations make it easier to understand how
-    capital has been distributed throughout the portfolio and identify the
-    largest contributors to expected performance.
+    if st.button("Simulate Investment"):
 
-    Overall, the allocation reflects one of the central principles of Modern
-    Portfolio Theory: diversification. Rather than attempting to maximise
-    returns through a single investment, the optimisation process seeks the
-    most efficient combination of assets capable of improving the portfolio's
-    overall risk-adjusted performance.
-    """
+        simulated_values = investment * portfolio_cumulative
+        ending_value = simulated_values.iloc[-1]
+        gain = ending_value - investment
+        total_return = (ending_value / investment) - 1
+
+        col1, col2, col3 = st.columns(3)
+
+        with col1:
+            st.metric(
+                "Initial Investment",
+                f"${investment:,.0f}"
+            )
+
+        with col2:
+            st.metric(
+                "Ending Value",
+                f"${ending_value:,.0f}"
+            )
+
+        with col3:
+            st.metric(
+                "Gain / Loss",
+                f"${gain:,.0f}",
+                f"{total_return:.2%}"
+            )
+
+        simulator_fig = px.line(
+            x=simulated_values.index,
+            y=simulated_values.values,
+            labels={
+                "x": "Date",
+                "y": "Portfolio Value ($)"
+            }
         )
 
-    st.success(
-            "Key Insight: The optimised portfolio remains well diversified despite "
-            "favouring higher-performing securities, illustrating how effective "
-            "asset allocation can improve portfolio efficiency without excessive "
-            "concentration."
+        simulator_fig.update_layout(
+            title=f"Historical Growth of ${investment:,.0f}",
+            hovermode="x unified",
+            xaxis=dict(
+                dtick="M12",
+                tickformat="%Y"
+            ),
+            yaxis=dict(
+                tickprefix="$",
+                tickformat=",.0f",
+                showgrid=False
+            ),
+            height=420
         )
+
+        st.plotly_chart(
+            simulator_fig,
+            use_container_width=True
+        )
+    st.divider()
+
+
+
 
 
 # Research Report
@@ -1286,16 +1195,12 @@ if page == "Research Report":
 
     st.title("Portfolio Research Report")
 
-    st.write(
-        """
-This dashboard accompanies a comprehensive portfolio research report
-documenting the methodology, analytical techniques, findings, and
-conclusions derived from this quantitative portfolio analysis.
-
-The report will provide a detailed explanation of the complete workflow,
-from data collection and preprocessing through portfolio optimisation,
-risk analysis, and performance evaluation.
-"""
+    st.caption(
+    "The accompanying research report documents the methodology and "
+    "reasoning behind the portfolio analysis. It provides additional "
+    "context for the data, portfolio construction, performance and risk "
+    "measures, Monte Carlo optimisation, and the interpretation of the "
+    "results presented throughout this dashboard."
     )
 
     st.divider()
@@ -1346,78 +1251,54 @@ risk analysis, and performance evaluation.
         )
 
 
+
+
+
 # About Project
 
+if page == "About the Project":
 
-if page == "About Project":
+    st.title("About the Project")
 
-    st.title("About Project")
-
-    st.write(
-        """
-This project presents an end-to-end quantitative portfolio analysis
-conducted using Python and Modern Portfolio Theory.
-
-The objective was to evaluate the performance, risk characteristics,
-and diversification benefits of an equally weighted portfolio
-consisting of thirty large-cap U.S. equities between 2020 and 2025.
-
-Rather than serving as an investment recommendation,
-the project demonstrates the practical application of financial
-analytics, portfolio management techniques, statistical analysis,
-and data visualisation using Python.
-"""
+    st.caption(
+    "This project is an end-to-end quantitative portfolio analysis built "
+    "to examine how a diversified portfolio of 30 U.S. equities performed "
+    "over the 2020–2024 study period. The analysis begins with historical "
+    "market data and an equal-weight portfolio, then evaluates portfolio "
+    "returns, volatility, drawdowns, rolling risk, and risk-adjusted "
+    "performance to understand the relationship between return and risk. "
+    "The project then applies Modern Portfolio Theory and Monte Carlo "
+    "simulation to generate and evaluate 10,000 alternative portfolio "
+    "allocations, allowing the historical equal-weight portfolio to be "
+    "compared with portfolios designed around different risk-return "
+    "objectives. The dashboard brings these analyses together in an "
+    "interactive format, while the accompanying research report provides "
+    "the methodology, calculations, findings, and interpretation behind "
+    "the results."
     )
 
+   
     st.divider()
 
-    st.subheader("Project Objectives")
-
-    st.markdown("""
-
-- Collect and preprocess historical market data.
-
-- Analyse historical asset returns.
-
-- Measure portfolio performance.
-
-- Evaluate portfolio risk using multiple metrics.
-
-- Construct an equally weighted investment portfolio.
-
-- Optimise portfolio allocation using Monte Carlo Simulation.
-
-- Demonstrate Modern Portfolio Theory in practice.
-
-- Present findings through an interactive Streamlit dashboard.
-
-""")
-
-    st.divider()
-
-    st.subheader("Analytical Techniques")
+    st.subheader("Quantitative Approach")
 
     st.markdown("""
 
 - Historical Return Analysis
 
-- Correlation Matrix & Heatmap
+- Correlation & Diversification Analysis
 
-- Portfolio Return Estimation
+- Portfolio Performance Analysis
 
-- Portfolio Volatility
+- Volatility & Rolling Risk Analysis
 
-- Rolling Volatility
+- Maximum Drawdown Analysis
 
-- Maximum Drawdown
-
-- Sharpe Ratio
+- Risk-Adjusted Performance (Sharpe Ratio)
 
 - Monte Carlo Portfolio Simulation
 
-- Efficient Portfolio Selection
-
-- Portfolio Allocation Analysis
+- Portfolio Optimization & Allocation
 
 """)
 
@@ -1458,49 +1339,7 @@ and data visualisation using Python.
 - Matplotlib
 
 """)
-
-    st.divider()
-
-    st.subheader("Skills Demonstrated")
-
-    st.markdown("""
-
-- Quantitative Finance
-
-- Financial Data Analysis
-
-- Portfolio Management
-
-- Risk Analytics
-
-- Data Visualisation
-
-- Statistical Analysis
-
-- Python Programming
-
-- Interactive Dashboard Development
-
-""")
-
-    st.divider()
-
-    st.subheader("Project Summary")
-
-    st.write(
-        """
-This project demonstrates an end-to-end quantitative portfolio analysis 
-using Python and Modern Portfolio Theory. The accompanying Streamlit dashboard 
-was developed as an interactive visualisation of the completed analysis rather 
-than a portfolio management application. It enables users to explore the project's 
-methodology, portfolio performance, risk metrics, optimisation outcomes, and asset 
-allocation through an intuitive interface, making the findings more accessible than 
-a traditional Jupyter Notebook. The dashboard complements the research report by presenting 
-the analysis in a format that highlights both the financial insights and the technical implementation 
-behind the project.
-"""
-    )
-
+    
     st.divider()
 
     st.caption(
