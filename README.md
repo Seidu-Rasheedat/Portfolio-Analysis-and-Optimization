@@ -44,13 +44,13 @@ The project demonstrates the complete quantitative investment workflow from raw 
 
 # Dashboard Pages
 
-- Executive Summary
+- Overview
 - Performance Analytics
 - Risk Analytics
 - Portfolio Optimization
-- Portfolio Allocation
+- Investment Portfolio
 - Research Report
-- About Project
+- About the Project
 
 ---
 
@@ -172,13 +172,16 @@ streamlit run Portfolio_dashboard.py
 
 # Future Improvements
 
-- Black-Litterman Portfolio Optimisation
-- CAPM Integration
-- Value-at-Risk (VaR)
-- Conditional Value-at-Risk (CVaR)
-- Sector Allocation Analysis
-- Real-time Portfolio Updates
-- Multi-factor Portfolio Models
+The project could be extended in several ways as the analysis becomes more sophisticated:
+
+* **Black-Litterman Portfolio Optimisation**: incorporate investor views alongside market-based assumptions.
+* **CAPM Integration**: evaluate individual securities using systematic risk and expected return.
+* **Value-at-Risk (VaR)**: estimate potential portfolio losses under defined confidence levels.
+* **Conditional Value-at-Risk (CVaR)**: examine the expected losses beyond the VaR threshold.
+* **Sector Allocation Analysis**: assess portfolio exposure and concentration across sectors.
+* **Real-time Portfolio Updates**: incorporate more recent market data for a continuously updated analysis.
+* **Multi-factor Portfolio Models**: extend the analysis beyond market risk to factors such as size, value, momentum, and quality.
+
 
 ---
 
