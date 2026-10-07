@@ -143,15 +143,17 @@ Overall, the results illustrate how quantitative portfolio optimisation can prod
 
 # Future Improvements
 
-The project could be extended in several ways as the analysis becomes more sophisticated:
+The analysis could be extended through:
 
-* **Black-Litterman Portfolio Optimisation**: incorporate investor views alongside market-based assumptions.
-* **CAPM Integration**: evaluate individual securities using systematic risk and expected return.
-* **Value-at-Risk (VaR)**: estimate potential portfolio losses under defined confidence levels.
-* **Conditional Value-at-Risk (CVaR)**: examine the expected losses beyond the VaR threshold.
-* **Sector Allocation Analysis**: assess portfolio exposure and concentration across sectors.
-* **Real-time Portfolio Updates**: incorporate more recent market data for a continuously updated analysis.
-* **Multi-factor Portfolio Models**: extend the analysis beyond market risk to factors such as size, value, momentum, and quality.
+* **Value-at-Risk (VaR) and Conditional Value-at-Risk (CVaR):** quantify potential portfolio losses under specified confidence levels and examine losses beyond the VaR threshold.
+
+* **Transaction Costs and Turnover:** incorporate estimated transaction costs and portfolio turnover into the optimisation process to assess the effect of rebalancing on portfolio performance.
+
+* **Historical Backtesting:** evaluate the performance of the optimised portfolio over historical periods not used in the optimisation process.
+
+* **Rebalancing Analysis:** assess how different rebalancing frequencies affect portfolio risk, return, turnover, and overall performance.
+
+* **Alternative Optimisation Constraints:** introduce practical constraints such as maximum individual-security weights or minimum diversification requirements and evaluate their effect on the efficient portfolio.
 
 ---
 
