@@ -38,7 +38,7 @@ The project demonstrates the complete quantitative investment workflow from raw 
 - Portfolio allocation visualisation
 - Performance comparison tables
 - Interactive Streamlit dashboard
-- Professional Portfolio Analysis report
+- Portfolio Analysis report
 
 ---
 
@@ -139,35 +139,6 @@ Most importantly, the portfolio's Sharpe Ratio improved from 0.92 to 1.13, indic
 
 Overall, the results illustrate how quantitative portfolio optimisation can produce a more efficient allocation of capital than a naïve equal-weighted strategy while maintaining a well-diversified investment portfolio.
 
-
----
-
-# Installation
-
-Clone the repository
-
-```bash
-git clone https://github.com/Seidu-Rasheedat/Portfolio-Analysis-and-Optimization.git
-```
-
-Navigate into the project
-
-```bash
-cd Portfolio-Analysis-and-Optimization
-```
-
-Install dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
-Run the dashboard
-
-```bash
-streamlit run Portfolio_dashboard.py
-```
-
 ---
 
 # Future Improvements
@@ -181,18 +152,6 @@ The project could be extended in several ways as the analysis becomes more sophi
 * **Sector Allocation Analysis**: assess portfolio exposure and concentration across sectors.
 * **Real-time Portfolio Updates**: incorporate more recent market data for a continuously updated analysis.
 * **Multi-factor Portfolio Models**: extend the analysis beyond market risk to factors such as size, value, momentum, and quality.
-
-
----
-
-# Author
-
-**Rasheedat Seidu**
-
-B.Sc. Finance  
-University of Lagos
-
-**Quant Foundations Project 1**
 
 ---
 
