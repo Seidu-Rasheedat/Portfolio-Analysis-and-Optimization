@@ -13,8 +13,11 @@ env/
 .env
 .env.*
 
-# Streamlit Secrets
-.streamlit/secrets.toml
+# Streamlit
+.streamlit/
+
+# Saved Python objects
+*.pkl
 
 # IDE
 .vscode/
